@@ -28,3 +28,13 @@ FROM (
     GROUP BY customer_name, month, year
 ) as monthly_sums
 GROUP BY year, month;
+
+/*
+Transactions
+*/
+
+-- Transfer 100 from Clement to Antoine.
+BEGIN TRANSACTION;
+UPDATE balances SET balance = balance - 100 WHERE username = 'clement';
+UPDATE balances SET balance = balance + 100 WHERE username = 'antoine';
+COMMIT;
